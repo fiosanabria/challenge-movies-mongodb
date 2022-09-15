@@ -1,19 +1,20 @@
 import { Genre, GenreCollection } from "../models/Genre";
-import { Movie } from "../models/Movie";
+import { Movie, MovieCollection, MovieSchema } from "../models/Movie";
 
 class DBMovies {
   async addMovie(movie: Movie) {
-    throw new Error("Method not implemented.");
+    await MovieCollection.create(movie)
   }
   async getMovies(): Promise<Movie[]> {
-    throw new Error("Method not implemented.");
+    const Movies: Movie[] = await MovieCollection.find();
+    return Movies;
   }
 
   async addGenre(genre: string) {
-    throw new Error("Method not implemented.");
+    await GenreCollection.create({name: genre});
   }
 
-  async getGenres(): Promise<Genre[]> {
+    async getGenres(): Promise<Genre[]> {
     const genres: Genre[] = await GenreCollection.find();
     return genres;
   }
